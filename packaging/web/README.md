@@ -73,4 +73,8 @@ Local test: `python3 -m http.server 8765` inside the folder, then open http://lo
 - The app fills the iframe and follows its size, so size the iframe and not the app.
 - **Sandboxed iframes** need at least `sandbox="allow-scripts allow-same-origin allow-popups"`;
   `allow-popups` lets download links open.
+- With `craft-links.json`, **Open** starts the app in a new tab, and a tab opened from a sandboxed
+  iframe inherits the sandbox: the app could lose downloads, form submission and more. When the
+  linked apps are your own (trusted) sites, add `allow-popups-to-escape-sandbox` so they open
+  unrestricted; otherwise expect them to run with the iframe's restrictions.
 - Don't send `X-Frame-Options: DENY` or a `frame-ancestors` CSP that excludes the embedding page.
